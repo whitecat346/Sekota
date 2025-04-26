@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sekota_McLauncher.Models.Game
+namespace Sekota_McLauncher.Services
 {
-    internal class Install
+    internal class Manifest
     {
     }
 }

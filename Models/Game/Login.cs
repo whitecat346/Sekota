@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Sekota_McLauncher.Models.Game
 {
-    internal class Login
+    public class Login
     {
     }
 }

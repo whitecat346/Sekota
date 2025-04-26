@@ -1,0 +1,25 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		     xmlns:vm="using:Sekota_McLauncher.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="740" d:DesignHeight="405"
+			 x:Class="Sekota_McLauncher.HomeView"
+             x:DataType="vm:HomeViewModel"
+             Width="740" Height="405" Background="#0E0C13">
+	<Grid Width="740" Height="405">
+		<Button HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                Margin="0 0 60 60"
+                Width="180" Height="60"
+                Name="LaunchGame" Command="{Binding LaunchCommand}">
+			<TextBlock FontSize="20">Launch</TextBlock>
+        </Button>
+
+		<Button HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                Margin="0 0 260 60"
+                Width="180" Height="60"
+                Name="InstallGame" Command="{Binding InstallCommand}">
+            <TextBlock FontSize="20">Install</TextBlock>
+        </Button>
+    </Grid>
+</UserControl>

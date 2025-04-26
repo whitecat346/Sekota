@@ -1,20 +1,124 @@
 <Window xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:vm="using:Sekota_McLauncher.ViewModels"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-        x:Class="Sekota_McLauncher.Views.MainWindow"
-        x:DataType="vm:MainWindowViewModel"
-        Icon="/Assets/avalonia-logo.ico"
-        Title="Sekota_McLauncher">
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:rxui="http://reactiveui.net"
+		xmlns:vm="using:Sekota_McLauncher.ViewModels"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:sekotaMcLauncher="clr-namespace:Sekota_McLauncher"
+		xmlns:controls="clr-namespace:Sekota_McLauncher.Controls"
+		mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+		Width="800" Height="450"
+		WindowStartupLocation="CenterScreen"
+		Background="#0E0C13"
+		x:Class="Sekota_McLauncher.Views.MainWindow"
+		x:DataType="vm:MainWindowViewModel"
+		Icon="/Assets/avalonia-logo.ico"
+		Title="Sekota">
 
-    <Design.DataContext>
-        <!-- This only sets the DataContext for the previewer in an IDE,
-             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-        <vm:MainWindowViewModel/>
-    </Design.DataContext>
+	<Design.DataContext>
+		<!-- This only sets the DataContext for the previewer in an IDE,
+			 to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+		<vm:MainWindowViewModel/>
+	</Design.DataContext>
 
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+	<Window.Styles>
+		<Style Selector="Window">
+			<Setter Property="ExtendClientAreaChromeHints" Value="NoChrome"/>
+			<Setter Property="ExtendClientAreaTitleBarHeightHint" Value="-1"/>
+			<Setter Property="ExtendClientAreaToDecorationsHint" Value="True"/>
+		</Style>
+	</Window.Styles>
 
+	<Grid Width="800" Height="450">
+		<!--Top Bar-->
+		<StackPanel Name="TopBar" 
+				Width="800" Height="45" 
+				VerticalAlignment="Top"
+				Background="#262133" 
+				Orientation="Horizontal">
+			<!--Close & Minimize BUttons-->
+            <StackPanel Orientation="Horizontal" Spacing="10"
+                        HorizontalAlignment="Right" 
+                        Margin="710 0 0 0">
+				<Border CornerRadius="1000"
+						BorderThickness="0.001"
+                        Height="35" Width="32">
+					<Button Name="MinimizeButton" Command="{Binding MinimizeWindowCommand}">
+						<PathIcon Data="{StaticResource MinimizeButtonPath}" >
+							<PathIcon.RenderTransform>
+								<ScaleTransform ScaleX="0.9" ScaleY="0.9"/>
+                            </PathIcon.RenderTransform>
+                        </PathIcon>
+                    </Button>
+                </Border>
+                <Border CornerRadius="1000"
+						BorderThickness="0.001"
+                        Height="35" Width="33"
+                        HorizontalAlignment="Right">
+                    <Button Name="CloseButton" Command="{Binding CloseWindowCommand}">
+						<PathIcon Data="{StaticResource CloseButtonPath}">
+							<PathIcon.RenderTransform>
+								<ScaleTransform ScaleX="0.8" ScaleY="0.8"/>
+                            </PathIcon.RenderTransform>
+                        </PathIcon>
+                    </Button>
+                </Border>
+            </StackPanel>
+		</StackPanel>
+
+		<!--Left Bar-->
+		<StackPanel Name="LeftBar" 
+				Width="60" Height="405" Spacing="10"
+				HorizontalAlignment="Left" VerticalAlignment="Bottom"
+				Background="#17141F" 
+				Orientation="Vertical">
+			<!--Home Button-->
+            <Border CornerRadius="1000"
+                    BorderThickness="0.001"
+                    Height="50" Width="50" Margin="0 10 0 0"
+                    VerticalAlignment="Top">
+				<Button Name="Home" Height="50" Width="50" Background="#00000000"
+                        Command="{Binding HomeCommand}">
+					<PathIcon Data="{StaticResource Home}">
+						<PathIcon.RenderTransform>
+							<ScaleTransform ScaleX="1.2" ScaleY="1.2"></ScaleTransform>
+                        </PathIcon.RenderTransform>
+                    </PathIcon>
+                </Button>
+            </Border>
+			<!--About Button-->
+			<Border CornerRadius="1000"
+                    BorderThickness="0.001"
+                    Height="50" Width="50" Margin="0 10 0 0"
+                    VerticalAlignment="Top">
+	            <Button Name="About" Height="50" Width="50" Background="#00000000"
+                        Command="{Binding AboutCommand}">
+		            <PathIcon Data="{StaticResource About}">
+			            <PathIcon.RenderTransform>
+				            <ScaleTransform ScaleX="1.2" ScaleY="1.2"></ScaleTransform>
+                        </PathIcon.RenderTransform>
+                    </PathIcon>
+                </Button>
+            </Border>
+			<!--Test Button-->
+			<controls:CycleButton 
+                Name="Test" 
+                Height="50" Width="50"
+				Foreground="{StaticResource FillColor}"
+				Background="#00000000"
+                Data="M14,2 C20.6274,2 26,7.37258 26,14 C26,20.6274 20.6274,26 14,26 C7.37258,26 2,20.6274 2,14 C2,7.37258 7.37258,2 14,2 Z M14,3.5 C8.20101,3.5 3.5,8.20101 3.5,14 C3.5,19.799 8.20101,24.5 14,24.5 C19.799,24.5 24.5,19.799 24.5,14 C24.5,8.20101 19.799,3.5 14,3.5 Z M14,11 C14.3796833,11 14.6934889,11.2821653 14.7431531,11.6482323 L14.75,11.75 L14.75,19.25 C14.75,19.6642 14.4142,20 14,20 C13.6203167,20 13.3065111,19.7178347 13.2568469,19.3517677 L13.25,19.25 L13.25,11.75 C13.25,11.3358 13.5858,11 14,11 Z M14,7 C14.5523,7 15,7.44772 15,8 C15,8.55228 14.5523,9 14,9 C13.4477,9 13,8.55228 13,8 C13,7.44772 13.4477,7 14,7 Z"/>
+		</StackPanel>
+
+		<!--Main Content-->
+		<Grid HorizontalAlignment="Right" VerticalAlignment="Bottom"
+              Height="405" Width="740">
+			<rxui:RoutedViewHost Router="{Binding Router}">
+				<rxui:RoutedViewHost.ViewLocator>
+					<sekotaMcLauncher:AppViewLocator/>
+                </rxui:RoutedViewHost.ViewLocator>
+            </rxui:RoutedViewHost>
+        </Grid>
+
+	</Grid>
+	
 </Window>

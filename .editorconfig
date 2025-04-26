@@ -1,5 +1,5 @@
-# 如果要从更高级别的目录继承 .editorconfig 设置，请删除以下行
 root = true
+# 如果要从更高级别的目录继承 .editorconfig 设置，请删除以下行
 
 # c# 文件
 [*.cs]
@@ -30,7 +30,7 @@ dotnet_search_reference_assemblies = true
 # 组织 Using
 dotnet_separate_import_directive_groups = false
 dotnet_sort_system_directives_first = false
-file_header_template = unset
+file_header_template = 
 
 # this. 和 Me. 首选项
 dotnet_style_qualification_for_event = false
@@ -253,3 +253,25 @@ dotnet_style_qualification_for_method = false:silent
 dotnet_style_qualification_for_event = false:silent
 dotnet_style_require_accessibility_modifiers = for_non_interface_members:silent
 tab_width = 4
+
+[*]
+
+# ReSharper properties
+resharper_align_linq_query = true
+resharper_align_multiline_argument = true
+resharper_align_multiline_calls_chain = true
+resharper_align_multiline_extends_list = true
+resharper_align_tuple_components = true
+resharper_csharp_align_multiline_parameter = true
+resharper_csharp_int_align_comments = true
+resharper_csharp_outdent_dots = true
+resharper_int_align_assignments = true
+resharper_int_align_fields = true
+resharper_int_align_methods = true
+resharper_int_align_parameters = true
+resharper_int_align_properties = true
+resharper_int_align_switch_expressions = true
+resharper_int_align_switch_sections = true
+resharper_int_align_variables = true
+resharper_outdent_binary_ops = true
+resharper_outdent_binary_pattern_ops = true
